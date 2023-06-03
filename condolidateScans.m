@@ -11,13 +11,13 @@ for i = 1:3
 homeDir = [pwd filesep 'Functionals' filesep 'run' num2str(i)]
 
 if strcmp(homeDir, [pwd filesep 'Functionals' filesep 'run1'])
-    outDir = [pwd filesep 'c036fa65-4de5-4f_8001_ep2d_bold_moco_sms6_AP_20221214'];
+    outDir = [pwd filesep 'addd69d5-9c54-4a_9001_ep2d_bold_moco_sms6_AP_20230515']; 
 elseif strcmp(homeDir, [pwd filesep 'Functionals' filesep 'run2'])
 %     outDir = [pwd filesep 'Runs2and3_Only' filesep '75f00a82-b188-48_9001_ep2d_bold_moco_sms6_AP_1_20220309'];
-    outDir = [pwd filesep 'c036fa65-4de5-4f_9001_ep2d_bold_moco_sms6_AP_2_20221214'];
+    outDir = [pwd filesep 'addd69d5-9c54-4a_11001_ep2d_bold_moco_sms6_AP_2_20230515'];
 elseif strcmp(homeDir, [pwd filesep 'Functionals' filesep 'run3'])
 %     outDir = [pwd filesep 'Runs2and3_Only' filesep '75f00a82-b188-48_10001_ep2d_bold_moco_sms6_AP_1_20220309'];
-    outDir = [pwd filesep 'c036fa65-4de5-4f_10001_ep2d_bold_moco_sms6_AP_3_20221214'];
+    outDir = [pwd filesep 'addd69d5-9c54-4a_13001_ep2d_bold_moco_sms6_AP_3_20230515'];
 end
 
 if ~exist(outDir)

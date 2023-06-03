@@ -14,7 +14,7 @@ paths.spmPath = [paths.taskPath filesep 'spm12'];
 
 addpath(paths.spmPath);
 addpath(paths.taskCodePath);
-addpath(genpath(paths.taskPath));
+% addpath(genpath(paths.taskPath));
 
 cd(paths.taskPath);
 % see spm tutorial and use their GUI
@@ -41,7 +41,7 @@ blockDuration = 16; % seconds
 numBlocks = 32; % blocks in a bold run
 
 % ------------------------------------------------------------------------
-Session = 10;
+Session = 12;
 % ------------------------------------------------------------------------
 
 BODY = 2;
@@ -170,8 +170,41 @@ elseif Session == 10 %P82 Passive
     numRuns = 3;
     blockOnStamps = events(find(events(:, 2) == BLOCK_ON), 1)*1e-9;
     pulseOnStamps = events(find(events(:, 2) == MRI_PULSE), 1)*1e-9;
+elseif Session == 11 %P84 "Active"
+    filename = [paths.taskCodePath filesep 'logs' filesep 'P84CS_Loc_1_fMRILoc_2023-03-21_13-03-20.txt'];
+    logfile = readtable(filename, 'ReadVariableNames', false);
+    events = table2cell(logfile);
+    events = cell2mat(events(:, 1:2));
+    taskStruct = load([paths.taskCodePath filesep 'data' filesep 'P84CS_Loc_1_Sub_32_Block.mat']);
+    
+    fullBlockOrder = taskStruct.blockOrder';
+    numRuns = 3;
+    blockOnStamps = events(find(events(:, 2) == BLOCK_ON), 1)*1e-9;
+    pulseOnStamps = events(find(events(:, 2) == MRI_PULSE), 1)*1e-9;
+elseif Session == 11 %P85 "Active"
+    filename = [paths.taskCodePath filesep 'logs' filesep 'P85CS_1_fMRILoc_2023-04-03_14-29-20.txt'];
+    logfile = readtable(filename, 'ReadVariableNames', false);
+    events = table2cell(logfile);
+    events = cell2mat(events(:, 1:2));
+    taskStruct = load([paths.taskCodePath filesep 'data' filesep 'P85CS_1_Sub_32_Block.mat']);
+    
+    fullBlockOrder = taskStruct.blockOrder';
+    numRuns = 3;
+    blockOnStamps = events(find(events(:, 2) == BLOCK_ON), 1)*1e-9;
+    pulseOnStamps = events(find(events(:, 2) == MRI_PULSE), 1)*1e-9;
+elseif Session == 12
+    filename = [paths.taskCodePath filesep 'logs' filesep 'P86CS_1_fMRILoc_2023-05-15_08-40-59.txt'];
+    logfile = readtable(filename, 'ReadVariableNames', false);
+    events = table2cell(logfile);
+    events = cell2mat(events(:, 1:2));
+    taskStruct = load([paths.taskCodePath filesep 'data' filesep 'P86CS_1_Sub_32_Block.mat']);
+    
+    fullBlockOrder = taskStruct.blockOrder';
+    numRuns = 3;
+    blockOnStamps = events(find(events(:, 2) == BLOCK_ON), 1)*1e-9;
+    pulseOnStamps = events(find(events(:, 2) == MRI_PULSE), 1)*1e-9;
 end
-
+fprintf('Chosen Session number: %d ', Session) 
 %% convert to useful information
 
 d = datetime(blockOnStamps, 'ConvertFrom', 'datenum');
