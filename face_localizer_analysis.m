@@ -41,7 +41,7 @@ blockDuration = 16; % seconds
 numBlocks = 32; % blocks in a bold run
 
 % ------------------------------------------------------------------------
-Session = 12;
+Session = 15;
 % ------------------------------------------------------------------------
 
 BODY = 2;
@@ -192,7 +192,7 @@ elseif Session == 11 %P85 "Active"
     numRuns = 3;
     blockOnStamps = events(find(events(:, 2) == BLOCK_ON), 1)*1e-9;
     pulseOnStamps = events(find(events(:, 2) == MRI_PULSE), 1)*1e-9;
-elseif Session == 12
+elseif Session == 12 % P86 Active
     filename = [paths.taskCodePath filesep 'logs' filesep 'P86CS_1_fMRILoc_2023-05-15_08-40-59.txt'];
     logfile = readtable(filename, 'ReadVariableNames', false);
     events = table2cell(logfile);
@@ -203,8 +203,43 @@ elseif Session == 12
     numRuns = 3;
     blockOnStamps = events(find(events(:, 2) == BLOCK_ON), 1)*1e-9;
     pulseOnStamps = events(find(events(:, 2) == MRI_PULSE), 1)*1e-9;
+elseif Session == 13 % P87 Active
+    filename = [paths.taskCodePath filesep 'logs' filesep 'P87CS_1_fMRILoc_2023-06-13_14-34-03.txt'];
+    logfile = readtable(filename, 'ReadVariableNames', false);
+    events = table2cell(logfile);
+    events = cell2mat(events(:, 1:2));
+    taskStruct = load([paths.taskCodePath filesep 'data' filesep 'P87CS_1_Sub_32_Block.mat']);
+    
+    fullBlockOrder = taskStruct.blockOrder';
+    numRuns = 3;
+    blockOnStamps = events(find(events(:, 2) == BLOCK_ON), 1)*1e-9;
+    pulseOnStamps = events(find(events(:, 2) == MRI_PULSE), 1)*1e-9;
+elseif Session == 14 % P88 active
+    filename = [paths.taskCodePath filesep 'logs' filesep 'P88CS_1_fMRILoc_2023-07-31_13-17-30.txt'];
+    logfile = readtable(filename, 'ReadVariableNames', false);
+    events = table2cell(logfile);
+    events = cell2mat(events(:, 1:2));
+    taskStruct = load([paths.taskCodePath filesep 'data' filesep 'P88CS_1_Sub_32_Block.mat']);
+    
+    fullBlockOrder = taskStruct.blockOrder';
+    numRuns = 3;
+    blockOnStamps = events(find(events(:, 2) == BLOCK_ON), 1)*1e-9;
+    pulseOnStamps = events(find(events(:, 2) == MRI_PULSE), 1)*1e-9;
+elseif Session == 15 % P90 active
+    filename = [paths.taskCodePath filesep 'logs' filesep 'P90CS_1_fMRILoc_2023-08-31_12-56-43.txt'];
+    logfile = readtable(filename, 'ReadVariableNames', false);
+    events = table2cell(logfile);
+    events = cell2mat(events(:, 1:2));
+    taskStruct = load([paths.taskCodePath filesep 'data' filesep 'P90CS_1_Sub_32_Block.mat']);
+    
+    fullBlockOrder = taskStruct.blockOrder';
+    numRuns = 3;
+    blockOnStamps = events(find(events(:, 2) == BLOCK_ON), 1)*1e-9;
+    pulseOnStamps = events(find(events(:, 2) == MRI_PULSE), 1)*1e-9;
+
 end
 fprintf('Chosen Session number: %d ', Session) 
+fprintf('\n') 
 %% convert to useful information
 
 d = datetime(blockOnStamps, 'ConvertFrom', 'datenum');

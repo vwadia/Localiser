@@ -25,9 +25,15 @@ basePath = [diskPath filesep 'Localiser_Task'];
 % patientID = 'P85CS'; 
 % dicomPath = [basePath filesep patientID filesep 'OverlayImagesMango'];
 
-patientID = 'P86CS'; 
-dicomPath = [basePath filesep patientID filesep 'Runs1and2_Only' filesep 'OverlayImagesMango'];
+% patientID = 'P86CS'; 
+% % dicomPath = [basePath filesep patientID filesep 'Runs1and2_Only' filesep 'OverlayImagesMango'];
+% dicomPath = [basePath filesep patientID filesep 'Runs12and3' filesep 'OverlayImagesMango'];
 
+% patientID = 'P87CS'; 
+% dicomPath = [basePath filesep patientID filesep 'OverlayImagesMango'];
+
+patientID = 'P88CS'; 
+dicomPath = [basePath filesep patientID filesep 'OverlayImagesMango'];
 
 % % fileName = ['p84cs_T1w_wFullThal_Overlay']; % for Natasha
 % fileName = ['p84cs_T1w_wCMThal_Overlay']; % for Natasha
@@ -38,7 +44,7 @@ fileName = ['Face_NonFace_Overlay_' patientID];
 
 
 
-outPath = [dicomPath filesep 'OverlaySeries_' fileName];
+outPath = [dicomPath filesep 'NewOverlaySeries_' fileName];
 if ~exist(outPath)
     mkdir(outPath)
 end
@@ -96,7 +102,7 @@ for fr = 1:info.NumberOfFrames
     % write out frame as a new dicom - copying over all the unchanged
     % values from the overlay image 
 %     dicomwrite(file, [outPath filesep 'FnF_Frame_' sprintf('%03d', InStackPosNum)], info, 'CreateMode', 'Copy');
-    dicomwrite(file, [outPath filesep 'Frame_' sprintf('%03d', InStackPosNum)], info, 'CreateMode', 'Copy');
+    dicomwrite(file, [outPath filesep 'Frame_' sprintf('%03d', InStackPosNum) '.dcm'], info, 'CreateMode', 'Copy'); % add dicom extension or ROSA complains
     
 end
 toc
